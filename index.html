@@ -3,42 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#101112" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4f4f5" media="(prefers-color-scheme: light)">
 <meta name="robots" content="noindex">
-<title>Ryan Thomas — ryanthomas.ai</title>
-<meta name="description" content="Ryan Thomas builds useful software. This is where the projects live.">
+<title>Ryan Thomas</title>
+<meta name="description" content="Ryan Thomas. Building useful software, one small thing at a time.">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ryan Thomas">
+<meta property="og:description" content="Ryan Thomas. Building useful software, one small thing at a time.">
 <style>
-:root{--bg:#FAFAF8;--text:#111111;--muted:#5B5B57;--accent:#2F5BFF;--rule:#E4E4DF}
-@media (prefers-color-scheme:dark){:root{--bg:#0E0E0F;--text:#F2F2EF;--muted:#A3A39E;--accent:#8AA4FF;--rule:#26262A}}
-*{box-sizing:border-box}
-html{background:var(--bg)}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:1.0625rem;line-height:1.6;-webkit-text-size-adjust:100%}
-.wrap{max-width:40rem;margin:0 auto;padding:14vh clamp(1.5rem,6vw,3rem) 3rem}
-.mark{margin:0 0 2rem;font-size:.9rem;color:var(--muted)}
-h1{margin:0 0 1rem;font-size:clamp(2rem,6vw,3.25rem);font-weight:650;line-height:1.1;letter-spacing:-.02em;text-wrap:balance}
-.lede{margin:0;font-size:1.25rem;color:var(--muted)}
-hr{border:0;border-top:1px solid var(--rule);margin:2.5rem 0}
-.label{margin:0 0 .5rem;font-size:.8125rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-p{margin:0 0 1.25rem}
-a{color:var(--accent);text-underline-offset:.2em}
-a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-footer{margin-top:3rem;font-size:.875rem;color:var(--muted)}
+/* tokens.css (inlined) */
+/* Graphite (final) tokens: Ryan's DS-001 values are used unless marked GAP/DEVIATION in tokens.json.
+   Dark is the default; light overrides via prefers-color-scheme. Paste-ready. */
+:root {
+  color-scheme: dark light;
+  --bg: #101112;
+  --panel: #141516;
+  --surface: #1b1c1e;
+  --bg-sunken: #0c0f11;
+  --bg-raised: #ffffff08;
+  --text-primary: #e9e9eb;
+  --text-secondary: #b9bbbf;
+  --muted: #858d96;
+  --text-faint: #83868c;
+  --text-disabled: #64696e;
+  --border-subtle: #ffffff08;
+  --border: #ffffff10;
+  --border-strong: #ffffff14;
+  --border-control: #6a7079;
+  --action-fill: #efa16f;
+  --action-fill-hover: #ffb37e;
+  --action-fill-active: #dd8e5b;
+  --action-text: #1e1711;
+  --action-subtle-fill: #ffffff05;
+  --link: #efa16f;
+  --link-hover: #ffb37e;
+  --focus-ring: #ff945b;
+  --status-working: #9ccf97;
+  --status-waiting: #e7b16e;
+  --status-idle: #64696e;
+  --status-error: #f2908a;
+  --shadow-card: 0 1px 2px #00000033;
+  --shadow-raised: 0 8px 30px #00000066;
+  --shadow-modal: 0 30px 100px #00000088;
+  --shadow-drawer: 20px 0 80px #000000bb;
+  --shadow-edge: inset 0 1px 0 #ffffff0d;
+  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --text-4xl: 30px;
+  --text-3xl: 25px;
+  --text-2xl: 21px;
+  --text-xl: 17px;
+  --text-lg: 14px;
+  --text-md: 13px;
+  --text-base: 12px;
+  --text-hero: clamp(2.375rem, 1rem + 6.4vw, 5rem);
+  --leading-hero: 1.05;
+  --leading-display: 1.2;
+  --leading-heading: 1.35;
+  --leading-body: 1.6;
+  --leading-ui: 1.2;
+  --tracking-hero: -0.035em;
+  --weight-hero: 600;
+  --weight-button: 600;
+  --text-button: 16px;
+  --space-2xs: 4px;
+  --space-sm: 8px;
+  --space-lg: 12px;
+  --space-4xl: 24px;
+  --space-6xl: 42px;
+  --space-7xl: 64px;
+  --space-8xl: 96px;
+  --radius-md: 7px;
+  --radius-xl: 12px;
+  --target-min: 44px;
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 3px;
+  --duration-fast: 180ms;
+  --duration-base: 200ms;
+  --duration-slow: 250ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --bp-sm: 730px;
+  --layout-max: 1120px;
+  --text-body: 16px;
+  --text-lead: clamp(1.125rem, 1.02rem + 0.55vw, 1.5rem);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f4f4f5;
+    --panel: #fafafa;
+    --surface: #ffffff;
+    --bg-sunken: #ebebed;
+    --bg-raised: #ffffff;
+    --text-primary: #17181a;
+    --text-secondary: #3d4046;
+    --muted: #565b63;
+    --text-faint: #62676f;
+    --text-disabled: #8a8f96;
+    --border-subtle: #1011120f;
+    --border: #1011121a;
+    --border-strong: #11121229;
+    --border-control: #70757d;
+    --action-fill: #a8470b;
+    --action-fill-hover: #8f3c08;
+    --action-fill-active: #7a3306;
+    --action-text: #ffffff;
+    --action-subtle-fill: #1011120a;
+    --link: #a8470b;
+    --link-hover: #8f3c08;
+    --focus-ring: #a8470b;
+    --status-working: #1f6b32;
+    --status-waiting: #7a5200;
+    --status-idle: #6b7078;
+    --status-error: #b3261e;
+    --shadow-card: 0 1px 2px #1011121f;
+    --shadow-raised: 0 8px 30px #11121224;
+    --shadow-modal: 0 30px 100px #11121238;
+    --shadow-drawer: 20px 0 80px #11121238;
+    --shadow-edge: inset 0 1px 0 #ffffff;
+  }
+}
+
+/* base */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+.page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:0 clamp(20px,5vw,48px)}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-8xl) 0 var(--space-7xl)}
+h1{margin:0 0 var(--space-4xl);font-family:var(--font-display);font-weight:var(--weight-hero);font-size:var(--text-hero);line-height:var(--leading-hero);letter-spacing:var(--tracking-hero);color:var(--text-primary);text-wrap:balance}
+.lead{margin:0 0 var(--space-4xl);max-width:26em;font-size:var(--text-lead);line-height:1.4;color:var(--text-primary);text-wrap:balance}
+.note{margin:0 0 var(--space-sm);max-width:34em;color:var(--muted)}
+.actions{margin:var(--space-4xl) 0 0}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;border-radius:2px}
+a:hover{color:var(--link-hover)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target-min);min-width:var(--target-min);padding:0 var(--space-4xl);border:1px solid transparent;border-radius:var(--radius-md);background:var(--action-fill);color:var(--action-text);font:var(--weight-button) var(--text-button)/var(--leading-ui) var(--font-body);text-decoration:none;cursor:pointer;transition:background-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
+.btn:hover{background:var(--action-fill-hover);color:var(--action-text)}
+.btn:active{background:var(--action-fill-active);color:var(--action-text)}
+a:focus-visible,.btn:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset)}
+footer{width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-4xl) 0 var(--space-4xl);border-top:1px solid var(--border);color:var(--muted);font-size:var(--text-lg);line-height:var(--leading-body)}
+footer p{margin:0}
+@media (max-width:730px){main{padding:var(--space-7xl) 0 var(--space-6xl)}.btn{width:100%}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+@media (forced-colors:active){.btn{border-color:ButtonText}}
 </style>
 </head>
 <body>
-<div class="wrap">
-<header>
-<p class="mark">ryanthomas.ai</p>
-<h1>Building useful software, one small thing at a time.</h1>
-<p class="lede">I'm Ryan Thomas. This is where my projects live.</p>
-</header>
-<hr>
-<main>
-<p class="label">What I'm building</p>
-<p>I'm working on a small set of tools and products under ryanthomas.ai. Nothing is ready to show yet, so this page is intentionally simple. Check back soon.</p>
-<p><a href="mailto:info@ryanthomas.ai">Get in touch</a></p>
-</main>
-<footer>© 2026 Ryan Thomas</footer>
+<div class="page">
+  <main id="main">
+    <h1>I'm Ryan Thomas.</h1>
+    <p class="lead">Building useful software, one small thing at a time.</p>
+    <p class="note">This is where my projects will live.</p>
+    <p class="note focx">Currently in development: <a href="https://focx.ai">Focx</a>, an autonomous development pipeline.</p>
+    <p class="actions"><a class="btn" href="mailto:info@ryanthomas.ai">Say hello</a></p>
+  </main>
+  <footer>
+    <p>&copy; 2026 Ryan Thomas</p>
+  </footer>
 </div>
 </body>
 </html>
