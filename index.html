@@ -156,10 +156,7 @@ a:focus-visible,.btn:focus-visible{outline:var(--focus-ring-width) solid var(--f
 footer{width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-4xl) 0 var(--space-4xl);border-top:1px solid var(--border);color:var(--muted);font-size:var(--text-lg);line-height:var(--leading-body)}
 footer p{margin:0}
 @media (max-width:730px){main{padding:var(--space-7xl) 0 var(--space-6xl)}.btn{width:100%}}
-.note.focx{max-width:38em}
-a.arrow-link::after{content:"\2192";display:inline-block;margin-left:.3em;text-decoration:none;transition:transform var(--duration-fast) var(--ease-standard)}
-a.arrow-link:hover::after,a.arrow-link:focus-visible::after{transform:translateX(2px)}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}a.arrow-link:hover::after,a.arrow-link:focus-visible::after{transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 @media (forced-colors:active){.btn{border-color:ButtonText}}
 </style>
 </head>
@@ -169,7 +166,6 @@ a.arrow-link:hover::after,a.arrow-link:focus-visible::after{transform:translateX
     <h1>I'm Ryan Thomas.</h1>
     <p class="lead">Building useful software, one small thing at a time.</p>
     <p class="note">This is where my projects will live.</p>
-    <p class="note focx">Currently in development: <a class="arrow-link" href="https://focx.ai">Focx</a>, an autonomous development pipeline.</p>
     <p class="actions"><a class="btn" href="mailto:info@ryanthomas.ai">Say hello</a></p>
   </main>
   <footer>
