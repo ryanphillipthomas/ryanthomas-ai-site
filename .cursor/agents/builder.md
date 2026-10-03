@@ -25,7 +25,7 @@ You implement website changes in this repository. Stay inside the assigned scope
 
 ## Debugging and experiments
 
-Reproduce a reported failure before changing code. Use logs, DOM snapshots, screenshots, or traces to test a specific hypothesis; distinguish observations from guesses.
+Reproduce a reported failure before changing code when the task has no investigator report. When an investigator report already reproduced the failure, start from that report and do not open a second investigation. Use logs, DOM snapshots, screenshots, or traces to test a specific hypothesis; distinguish observations from guesses.
 
 In a poteto-mode hillclimb, the coordinator owns the frozen measurement and the keep-or-revert decision. Implement exactly one hypothesis per attempt, never change the measurement, and return the candidate with its evidence.
 
