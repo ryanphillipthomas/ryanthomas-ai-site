@@ -70,6 +70,7 @@ const pageProbe = `(() => {
     innerWidth: innerWidth,
     scrollWidth: document.documentElement.scrollWidth,
     h1: q('h1').textContent.trim(),
+    h1Top: Math.round(q('h1').getBoundingClientRect().top),
     lead: q('.lead').textContent.trim(),
     btnText: btn.textContent.trim(),
     btnHref: btn.getAttribute('href'),
@@ -133,6 +134,7 @@ try {
       mobile ? v.btnWidth === v.mainWidth && v.mainPaddingTop === '64px'
              : v.btnWidth < v.mainWidth && v.mainPaddingTop === '96px',
       `button ${v.btnWidth}px of main ${v.mainWidth}px, padding-top ${v.mainPaddingTop}`);
+    if (mobile) check(`${tag}: hero starts at top of column`, v.h1Top === 64, `h1 top ${v.h1Top}px`);
     if (scheme === 'dark') check(`${tag}: dark palette`, v.bodyBg === 'rgb(16, 17, 18)', v.bodyBg);
     else check(`${tag}: light palette`, v.bodyBg === 'rgb(244, 244, 245)', v.bodyBg);
     for (const t of expect) check(`${tag}: page contains "${t}"`, v.bodyText.includes(t), '');

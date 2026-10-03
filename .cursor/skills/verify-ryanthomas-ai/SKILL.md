@@ -39,6 +39,7 @@ Per width and scheme it checks that:
 - the `.btn` is at least 44px tall and its `href` is a `mailto:` link;
 - there is no `<script>` element;
 - the layout matches the 730px breakpoint: at 731px the button is narrower than `main` and `main` padding-top is 96px, and at 730px and below the button fills `main` and padding-top is 64px;
+- at 730px and below, the hero starts at the top of the column (`h1` top is 64px, the mobile padding-top);
 - the body background is `rgb(16, 17, 18)` in dark and `rgb(244, 244, 245)` in light.
 
 Once per run it checks that the console, network, and HTTP responses had no errors.
