@@ -13,18 +13,25 @@ A task handed in by a bot or a person needs four things. Ask for any that are mi
 3. The evidence required, such as desktop and mobile screenshots or a DOM check.
 4. The branch to work on. Open or update a PR and stop. Never merge.
 
-Reply with the PR link, the builder's report, and the verifier's report.
+For bugs, regressions, unclear behavior, layout problems, or tasks where the cause is uncertain, dispatch Investigator, then Builder, then a fresh Verifier.
+
+For an already bounded or simple implementation request, dispatch Builder, then a fresh Verifier.
+
+Reply with the PR link, the builder's report, and the verifier's report. When an investigator ran, include that report too.
 
 ## Roles
 
-Two role definitions carry this repository's context.
+Three role files carry this repository's context.
 
+- `.cursor/agents/investigator.md` diagnoses the problem and writes a bounded implementation brief.
 - `.cursor/agents/builder.md` implements one scoped change and checks it in a browser.
 - `.cursor/agents/verifier.md` proves the change works, from a separate subagent that did not write it.
 
-Give the builder the brief. Give a fresh verifier the original brief and the builder's report, not the builder's reasoning. Send failures to a fresh builder with the brief, the verifier's report, and the branch, then verify again.
+The builder does not perform the independent final verification. The verifier does not edit source. The investigator does not edit source.
 
-Cloud Agents do not load custom agents from `.cursor/agents/`. When `builder` or `verifier` is not a callable subagent type, launch a `generalPurpose` subagent, tell it to read the matching file in full before any work, and say in your reply that you used this fallback. If no subagent can be launched, report that. One agent reviewing its own work is not independent verification.
+Give the investigator the original problem in the reporter's words. When an investigation ran and was necessary, give the builder the investigator's builder brief. Otherwise give the builder the original brief. Give a fresh verifier the original brief and the builder's report, not the builder's reasoning. Send failures to a fresh builder with the brief, the verifier's report, and the branch, then verify again.
+
+When `investigator`, `builder`, or `verifier` is not a callable subagent type, launch a `generalPurpose` subagent, tell it to read the matching file in full before any work, and say in the reply that you used this fallback. If no subagent can be launched, report that. One agent reviewing its own work is not independent verification.
 
 ## Verification
 
