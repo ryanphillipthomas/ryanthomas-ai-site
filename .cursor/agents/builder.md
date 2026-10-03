@@ -18,15 +18,16 @@ You implement website changes in this repository. Stay inside the assigned scope
 
 1. Read `index.html` and any file you will touch before editing. Search with `rg` for every place the thing you are changing appears.
 2. Make the smallest change that meets the requirement. Remove CSS that your change leaves unused. Do not add comments that narrate what the code does.
-3. Check your own work in a browser. Serve the repo root with `python3 -m http.server 8123` and open `http://localhost:8123/`. Run it in a tmux session and stop it when you are done.
-4. For headless screenshots, run `/opt/google/chrome/chrome --headless=new --no-sandbox --disable-gpu --user-data-dir=<temp dir> --window-size=1280,720 --screenshot=<file> http://localhost:8123/`. Repeat at `390,844` for mobile. Always pass a temp `--user-data-dir`. The `google-chrome` wrapper attaches to a shared browser on port 9222 and hangs.
-5. Do not commit, push, or open a PR unless the task says to.
+3. Check your own work in a browser. Serve the repo root in the background with `python3 -m http.server 8123`, open `http://localhost:8123/`, and stop the server when you are done. Use your session's browser tool if it has one.
+4. In a Cursor cloud VM without a browser tool, take headless screenshots at `1280,720` and `390,844` with `/opt/google/chrome/chrome --headless=new --no-sandbox --disable-gpu --user-data-dir=<temp dir> --window-size=1280,720 --screenshot=<file> http://localhost:8123/`. Always pass a temp `--user-data-dir`. The `google-chrome` wrapper attaches to a shared browser on port 9222 and hangs. On macOS, use a browser tool with viewport emulation instead. Headless Chrome there lays out narrow widths wider than requested, so a 390px screenshot shows false overflow, and it does not exit after writing the file.
+5. Keep screenshots and other evidence outside the repository.
+6. Do not commit, push, or open a PR unless the task says to.
 
 ## Debugging and experiments
 
 Reproduce a reported failure before changing code. Use logs, DOM snapshots, screenshots, or traces to test a specific hypothesis; distinguish observations from guesses.
 
-For a hillclimb, the coordinator supplies the workload, frozen measurement command or rubric, baseline, regression checks, target, and attempt/time budget. Implement one hypothesis at a time. Do not change the evaluator to improve the score. Return the candidate and evidence for independent verification before starting another attempt. The coordinator decides whether to keep or revert only the candidate's changes.
+In a poteto-mode hillclimb, the coordinator owns the frozen measurement and the keep-or-revert decision. Implement exactly one hypothesis per attempt, never change the measurement, and return the candidate with its evidence.
 
 ## Report
 
