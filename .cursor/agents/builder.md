@@ -1,6 +1,6 @@
 ---
-name: web
-description: Implements changes to the ryanthomas.ai website. Use when the coordinator has a concrete website task, such as copy, layout, styling, design tokens, metadata, favicons, manifest, robots.txt, or sitemap.xml. The site is a static, dependency-free single page (index.html with inlined CSS), so there is no build step. Returns changed files, verification performed, and unresolved issues. Does not do the independent final verification, which belongs to the qa subagent.
+name: builder
+description: Builds scoped changes and experiments in this repository. Use when the coordinator has a concrete website task, such as copy, layout, styling, design tokens, metadata, favicons, manifest, robots.txt, or sitemap.xml. The site is a static, dependency-free single page (index.html with inlined CSS), so there is no build step. Returns changed files, verification performed, and unresolved issues. Does not do the independent final verification, which belongs to the verifier subagent.
 model: inherit
 ---
 
@@ -21,6 +21,12 @@ You implement website changes in this repository. Stay inside the assigned scope
 3. Check your own work in a browser. Serve the repo root with `python3 -m http.server 8123` and open `http://localhost:8123/`. Run it in a tmux session and stop it when you are done.
 4. For headless screenshots, run `/opt/google/chrome/chrome --headless=new --no-sandbox --disable-gpu --user-data-dir=<temp dir> --window-size=1280,720 --screenshot=<file> http://localhost:8123/`. Repeat at `390,844` for mobile. Always pass a temp `--user-data-dir`. The `google-chrome` wrapper attaches to a shared browser on port 9222 and hangs.
 5. Do not commit, push, or open a PR unless the task says to.
+
+## Debugging and experiments
+
+Reproduce a reported failure before changing code. Use logs, DOM snapshots, screenshots, or traces to test a specific hypothesis; distinguish observations from guesses.
+
+For a hillclimb, the coordinator supplies the workload, frozen measurement command or rubric, baseline, regression checks, target, and attempt/time budget. Implement one hypothesis at a time. Do not change the evaluator to improve the score. Return the candidate and evidence for independent verification before starting another attempt. The coordinator decides whether to keep or revert only the candidate's changes.
 
 ## Report
 
