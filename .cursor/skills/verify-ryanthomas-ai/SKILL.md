@@ -38,7 +38,7 @@ Per width and scheme it checks that:
 - the page has no horizontal overflow (`scrollWidth` equals the viewport width);
 - the `.btn` is at least 44px tall and its `href` is a `mailto:` link;
 - there is no `<script>` element;
-- the layout matches the 730px breakpoint. At 731px the button is narrower than `main` and `main` padding-top is 96px. At 730px and below the button fills `main`. Mobile padding-top is `clamp(var(--space-7xl), 30vh, 260px)`, with a `padding-top` override of `clamp(var(--space-7xl), 30dvh, 260px)`.
+- the layout matches the 730px breakpoint. At 731px the button is narrower than `main` and `main` padding-top is 96px. At 730px and below the button fills `main`. Mobile padding-top scales with viewport height and is capped.
 - at 730px and 390px, the check `hero sits in optical band` passes when the `h1` top is at least 240px and at most 270px;
 - the body background is `rgb(16, 17, 18)` in dark and `rgb(244, 244, 245)` in light.
 
