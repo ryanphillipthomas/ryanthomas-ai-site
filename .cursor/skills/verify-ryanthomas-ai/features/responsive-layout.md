@@ -20,8 +20,8 @@ Preconditions:
 
 - `site.sh doctor` exits 0.
 
-- **Run the width matrix.** Run `node .cursor/skills/verify-ryanthomas-ai/scripts/drive.mjs http://127.0.0.1:8123/ "$EVIDENCE_DIR"`. At 731px the line `desktop layout` prints `PASS`, with `main` padding-top at 96px and the button narrower than `main`. At 730px and 390px the line `mobile layout` prints `PASS`, with padding-top at 64px and the button as wide as `main`.
-- **Hero column start.** At 730px and 390px the line `hero starts at top of column` prints `PASS`. `report.json` includes `h1Top`.
+- **Run the width matrix.** Run `node .cursor/skills/verify-ryanthomas-ai/scripts/drive.mjs http://127.0.0.1:8123/ "$EVIDENCE_DIR"`. At 731px the line `desktop layout` prints `PASS`, with `main` padding-top at 96px and the button narrower than `main`. At 730px and 390px the line `mobile layout` prints `PASS`, with the button as wide as `main`. Mobile padding-top is `clamp(var(--space-7xl), 30vh, 260px)`, with a `padding-top` override of `clamp(var(--space-7xl), 30dvh, 260px)`.
+- **Optical band.** At 730px and 390px the line `hero sits in optical band` prints `PASS` when the `h1` top is at least 240px and at most 270px. `report.json` includes `h1Top`.
 - **Check overflow and target size.** Every width prints `PASS` for `no horizontal overflow` and `button meets 44px target`.
 - **Proof.** `report.json` holds `scrollWidth`, `innerWidth`, `btnWidth`, `mainWidth`, and `mainPaddingTop` for each run. Read `dark-390.png` and confirm the button spans the column.
 
