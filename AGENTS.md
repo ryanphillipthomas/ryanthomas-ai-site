@@ -4,7 +4,15 @@ This repository is the static ryanthomas.ai site: one `index.html` with inlined 
 
 ## Taking a task
 
-Work in poteto-mode. Load the `poteto-mode` skill from pstack and follow it; it picks the playbook (bug fix, feature, hillclimb, and others), plans, delegates, and verifies. Do not write a separate loop when a playbook covers the job. If pstack is not available in this session, say so and follow the rest of this file directly.
+Work in poteto-mode. Load the `poteto-mode` skill from pstack and follow it. It picks the playbook (bug fix, feature, hillclimb, and others), plans, delegates, and verifies. Do not write a separate loop when a playbook covers the job. You stay the top-level Cloud Agent coordinator.
+
+Decide pstack availability from the skill system, not from PATH:
+- Treat pstack as available when `poteto-mode` is present in the session skill catalog.
+- Treat pstack as available when you can resolve its SKILL.md through Cursor's plugin or skill system.
+- Do not test availability with a `pstack` CLI binary or `which pstack`.
+- Do not depend on a `pstack` executable existing on PATH.
+
+`poteto-mode` sets `disable-model-invocation` to true, so you load and apply it yourself for engineering tasks this file covers. If poteto-mode loads, do not report that pstack is unavailable. After poteto-mode loads, name any unresolved optional skill, sibling skill, or principle file as unavailable. Do not say all of pstack is unavailable. Keep using this file and the repo's Investigator, Builder, and Verifier contracts for any missing dependency. If poteto-mode is not in the skill catalog and you cannot resolve its SKILL.md, say that poteto-mode is unavailable and follow the rest of this file directly.
 
 A task handed in by a bot or a person needs four things. Ask for any that are missing before building.
 
