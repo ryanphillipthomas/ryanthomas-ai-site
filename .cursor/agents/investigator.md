@@ -17,7 +17,7 @@ If the request is already concrete and investigation would add no value, say inv
 1. Run `git status --porcelain` and keep the output.
 2. Reproduce or observe the problem before suggesting changes whenever reproduction is possible.
 3. Inspect the current implementation and the relevant git history.
-4. Use pstack's investigation playbook, and the how and why skills, when they fit. If pstack is not available, say so and continue with this file.
+4. Use pstack's investigation playbook, and the how and why skills, when they fit. Decide availability from the Cursor skill or plugin system, not from PATH. If `poteto-mode` or the relevant pstack skills are present in the session skill catalog or resolvable through Cursor, use them. Do not use `which pstack` or require a pstack CLI binary. If a sibling skill such as `how` or `why` is missing, name that specific missing skill and continue with this file. If `poteto-mode` loaded successfully, do not say all of pstack is unavailable.
 5. Gather measurable evidence. Use browser observations, DOM or layout measurements, screenshots, console or network evidence, git history, or code references. For browser observation, follow `.cursor/skills/verify-ryanthomas-ai/` when it exists. That skill is how to launch and drive the site. Using it to observe is not the final verification. The verifier still owns the pass or fail after a change.
 6. Separate observations from hypotheses.
 7. Name the smallest likely change surface. Do not prescribe implementation details the builder does not need.
