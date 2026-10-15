@@ -31,10 +31,13 @@
 <meta name="twitter:image:alt" content="ryanthomas.ai: I'm Ryan Thomas.">
 <meta name="twitter:title" content="Ryan Thomas">
 <meta name="twitter:description" content="Ryan Thomas. Building useful software, one small thing at a time.">
+<link rel="preload" href="/fonts/oxanium/Oxanium-Variable.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 /* tokens.css (inlined) */
 /* Graphite (final) tokens: Ryan's DS-001 values are used unless marked GAP/DEVIATION in tokens.json.
    Dark is the default; light overrides via prefers-color-scheme. Paste-ready. */
+/* graphite-type.css (inlined) */
+@font-face { font-family: "Oxanium"; src: url("/fonts/oxanium/Oxanium-Variable.woff2") format("woff2"); font-weight: 200 800; font-display: swap; }
 :root {
   color-scheme: dark light;
   --bg: #101112;
@@ -68,26 +71,49 @@
   --shadow-modal: 0 30px 100px #00000088;
   --shadow-drawer: 20px 0 80px #000000bb;
   --shadow-edge: inset 0 1px 0 #ffffff0d;
-  --font-display: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-body: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-headline: "Oxanium", ui-sans-serif, system-ui, sans-serif;
+  --font-ui: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
-  --text-4xl: 30px;
-  --text-3xl: 25px;
-  --text-2xl: 21px;
-  --text-xl: 17px;
-  --text-lg: 14px;
-  --text-md: 13px;
-  --text-base: 12px;
-  --text-hero: clamp(2.375rem, 1rem + 6.4vw, 5rem);
-  --leading-hero: 1.05;
-  --leading-display: 1.2;
-  --leading-heading: 1.35;
-  --leading-body: 1.6;
-  --leading-ui: 1.2;
-  --tracking-hero: -0.035em;
-  --weight-hero: 600;
-  --weight-button: 600;
-  --text-button: 16px;
+  --type-display-family: var(--font-headline);
+  --type-display-weight: 600;
+  --type-display-size: 2.5rem;
+  --type-display-line-height: 1.1;
+  --type-display-tracking: -0.015em;
+  --type-h1-family: var(--font-headline);
+  --type-h1-weight: 600;
+  --type-h1-size: 2.125rem;
+  --type-h1-line-height: 1.176;
+  --type-h1-tracking: -0.01em;
+  --type-h2-family: var(--font-headline);
+  --type-h2-weight: 600;
+  --type-h2-size: 1.75rem;
+  --type-h2-line-height: 1.214;
+  --type-h2-tracking: -0.005em;
+  --type-h3-family: var(--font-headline);
+  --type-h3-weight: 500;
+  --type-h3-size: 1.375rem;
+  --type-h3-line-height: 1.273;
+  --type-h3-tracking: 0em;
+  --type-body-family: var(--font-ui);
+  --type-body-weight: 400;
+  --type-body-size: 1.0625rem;
+  --type-body-line-height: 1.529;
+  --type-body-tracking: 0em;
+  --type-callout-family: var(--font-ui);
+  --type-callout-weight: 400;
+  --type-callout-size: 1rem;
+  --type-callout-line-height: 1.375;
+  --type-callout-tracking: 0em;
+  --type-label-family: var(--font-ui);
+  --type-label-weight: 500;
+  --type-label-size: 0.8125rem;
+  --type-label-line-height: 1.385;
+  --type-label-tracking: 0.01em;
+  --type-caption-family: var(--font-ui);
+  --type-caption-weight: 400;
+  --type-caption-size: 0.75rem;
+  --type-caption-line-height: 1.333;
+  --type-caption-tracking: 0.01em;
   --space-2xs: 4px;
   --space-sm: 8px;
   --space-lg: 12px;
@@ -106,8 +132,35 @@
   --ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --bp-sm: 730px;
   --layout-max: 1120px;
-  --text-body: 16px;
-  --text-lead: clamp(1.125rem, 1.02rem + 0.55vw, 1.5rem);
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --type-display-size: 4rem;
+    --type-display-line-height: 1.062;
+    --type-display-tracking: -0.02em;
+    --type-h1-size: 3rem;
+    --type-h1-line-height: 1.125;
+    --type-h1-tracking: -0.015em;
+    --type-h2-size: 2.125rem;
+    --type-h2-line-height: 1.176;
+    --type-h2-tracking: -0.01em;
+    --type-h3-size: 1.5rem;
+    --type-h3-line-height: 1.25;
+    --type-h3-tracking: 0em;
+    --type-body-size: 1.125rem;
+    --type-body-line-height: 1.556;
+    --type-body-tracking: 0em;
+    --type-callout-size: 1rem;
+    --type-callout-line-height: 1.5;
+    --type-callout-tracking: 0em;
+    --type-label-size: 0.875rem;
+    --type-label-line-height: 1.429;
+    --type-label-tracking: 0.01em;
+    --type-caption-size: 0.8125rem;
+    --type-caption-line-height: 1.385;
+    --type-caption-tracking: 0.01em;
+  }
 }
 
 @media (prefers-color-scheme: light) {
@@ -149,19 +202,19 @@
 /* base */
 *,*::before,*::after{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--text-primary);font-family:var(--font-body);font-size:var(--text-body);line-height:var(--leading-body);-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg);color:var(--text-primary);font:var(--type-body-weight) var(--type-body-size)/var(--type-body-line-height) var(--type-body-family);letter-spacing:var(--type-body-tracking);-webkit-font-smoothing:antialiased}
 .page{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column;padding:0 clamp(20px,5vw,48px)}
 main{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-8xl) 0 var(--space-7xl)}
-h1{margin:0 0 var(--space-4xl);font-family:var(--font-display);font-weight:var(--weight-hero);font-size:var(--text-hero);line-height:var(--leading-hero);letter-spacing:var(--tracking-hero);color:var(--text-primary);text-wrap:balance}
-.lead{margin:0 0 var(--space-6xl);max-width:26em;font-size:var(--text-lead);line-height:1.4;color:var(--text-secondary);text-wrap:balance}
+h1{margin:0 0 var(--space-4xl);font:var(--type-display-weight) var(--type-display-size)/var(--type-display-line-height) var(--type-display-family);letter-spacing:var(--type-display-tracking);color:var(--text-primary);text-wrap:balance}
+.lead{margin:0 0 var(--space-6xl);max-width:26em;font:var(--type-body-weight) var(--type-body-size)/var(--type-body-line-height) var(--type-body-family);letter-spacing:var(--type-body-tracking);color:var(--text-secondary);text-wrap:balance}
 .actions{margin:var(--space-4xl) 0 0}
 a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.2em;border-radius:2px}
 a:hover{color:var(--link-hover)}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target-min);min-width:var(--target-min);padding:0 var(--space-4xl);border:1px solid transparent;border-radius:var(--radius-md);background:var(--action-fill);color:var(--action-text);font:var(--weight-button) var(--text-button)/var(--leading-ui) var(--font-body);text-decoration:none;cursor:pointer;transition:background-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:var(--target-min);min-width:var(--target-min);padding:0 var(--space-4xl);border:1px solid transparent;border-radius:var(--radius-md);background:var(--action-fill);color:var(--action-text);font:var(--type-label-weight) var(--type-label-size)/var(--type-label-line-height) var(--type-label-family);letter-spacing:var(--type-label-tracking);text-decoration:none;cursor:pointer;transition:background-color var(--duration-fast) var(--ease-standard),color var(--duration-fast) var(--ease-standard)}
 .btn:hover{background:var(--action-fill-hover);color:var(--action-text)}
 .btn:active{background:var(--action-fill-active);color:var(--action-text)}
 a:focus-visible,.btn:focus-visible{outline:var(--focus-ring-width) solid var(--focus-ring);outline-offset:var(--focus-ring-offset)}
-footer{width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-4xl) 0 var(--space-4xl);border-top:1px solid var(--border);color:var(--muted);font-size:var(--text-lg);line-height:var(--leading-body)}
+footer{width:100%;max-width:var(--layout-max);margin:0 auto;padding:var(--space-4xl) 0 var(--space-4xl);border-top:1px solid var(--border);color:var(--muted);font:var(--type-caption-weight) var(--type-caption-size)/var(--type-caption-line-height) var(--type-caption-family);letter-spacing:var(--type-caption-tracking)}
 footer p{margin:0}
 @media (max-width:730px){main{justify-content:flex-start;padding-top:clamp(var(--space-7xl),calc(50vh - 170px),260px);padding-top:clamp(var(--space-7xl),calc(50dvh - 170px),260px);padding-bottom:var(--space-6xl)}.btn{width:100%}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
