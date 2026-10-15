@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// Drive the site in headless Chrome over CDP and print a JSON verdict.
-// Usage: node drive.mjs <url> <evidence-dir> [--expect text]... [--absent text]...
 import { spawn } from 'node:child_process';
 import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync, existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
