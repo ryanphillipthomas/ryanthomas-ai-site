@@ -44,10 +44,9 @@ Per width and scheme it checks that:
 - content links use the primary text color and a 1px underline offset 4px. Nav links use the secondary text color and are not underlined;
 - the nav points at `#products` and `#contact`, GitHub points at `https://github.com/ryanphillipthomas`, and X points at `https://x.com/phazebludesign`;
 - the page shows the heading, the lead, `Focx`, `AI for learning.`, and `2026 Ryan Thomas`, and does not show `Placeholder`, `focx.ai`, or `handle to confirm`;
-- Focx is not linked to `https://focx.ai`;
-- under `prefers-reduced-motion: reduce`, hero animation is `none` and animation and transition durations are 0.
+- Focx is not linked to `https://focx.ai`.
 
-Once per run it checks that the console, network, and HTTP responses had no errors.
+Once per run it checks that, under `prefers-reduced-motion: reduce`, the hero animation is `none` and animation and transition durations are 0, and that the console, network, and HTTP responses had no errors.
 
 `--expect` and `--absent` assert visible copy at every width and scheme. Use them for the requirement under test, for example `--expect "Say hello" --absent "Placeholder"`. The default checks encode this page's Graphite tokens and the 1024px breakpoint. If a change intentionally alters those, update `scripts/drive.mjs` in the same PR and say so. Do not loosen a check to pass a candidate.
 
