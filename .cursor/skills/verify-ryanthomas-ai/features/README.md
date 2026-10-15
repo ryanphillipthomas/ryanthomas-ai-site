@@ -11,7 +11,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 
 ## Driving conventions
 
-- `scripts/drive.mjs` is the browser harness. It emulates four widths (1280, 731, 730, 390) and both color schemes.
+- `scripts/drive.mjs` is the browser harness. It emulates six widths (1280, 1024, 1023, 768, 390, 320) and both color schemes.
 - Add `--expect` and `--absent` for the copy a task requires. Treat the quoted text literally.
 - Prefer visible text, the `mailto:` href, and computed styles over DOM position.
 - Chrome always runs with a temp `--user-data-dir`. Never run the `google-chrome` wrapper.
@@ -26,7 +26,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 
 ## Features
 
-- [Hero and contact](./hero-and-contact.md) covers the heading, lead line, and the `Say hello` mailto button.
-- [Responsive layout](./responsive-layout.md) covers the 730px breakpoint, touch target, and overflow.
-- [Color schemes](./color-schemes.md) covers the dark default, the light override, and `theme-color`.
+- [Hero and contact](./hero-and-contact.md) covers the heading, products, contact links, and the `Say hello` mailto button.
+- [Responsive layout](./responsive-layout.md) covers the 1024px breakpoint, touch target, and overflow.
+- [Color schemes](./color-schemes.md) covers the dark default, the light override, the black-and-white button, and `theme-color`.
 - [Metadata and assets](./metadata-and-assets.md) covers head tags, icons, manifest, sitemap, and robots.
