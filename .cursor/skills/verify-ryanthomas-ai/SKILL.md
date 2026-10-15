@@ -31,20 +31,25 @@ Read-only. It prints the revision and branch, the number of dirty paths, whether
 node <skill>/scripts/drive.mjs http://127.0.0.1:8123/ "$EVIDENCE_DIR" [--expect "text"]... [--absent "text"]...
 ```
 
-It launches `/opt/google/chrome/chrome` headless with a fresh temp `--user-data-dir` and a private debugging port, and deletes that profile when it exits. It loads the page at 1280x720, 731x900, 730x900, and 390x844 in both `dark` and `light` (CDP viewport and `prefers-color-scheme` emulation), and prints one `PASS` or `FAIL` line per check.
+It launches `/opt/google/chrome/chrome` headless with a fresh temp `--user-data-dir` and a private debugging port, and deletes that profile when it exits. It loads the page at 1280x720, 1024x900, 1023x900, 768x900, 390x844, and 320x844 in both `dark` and `light` (CDP viewport and `prefers-color-scheme` emulation), and prints one `PASS` or `FAIL` line per check.
 
 Per width and scheme it checks that:
 
 - the page has no horizontal overflow (`scrollWidth` equals the viewport width);
-- the `.btn` is at least 44px tall and its `href` is a `mailto:` link;
+- the `.btn` is at least 44px tall, its label is `Say hello`, and its `href` is `mailto:info@ryanthomas.ai`;
 - there is no `<script>` element;
-- the layout matches the 730px breakpoint. At 731px the button is narrower than `main` and `main` padding-top is 96px. At 730px and below the button fills `main`. Mobile padding-top scales with viewport height and is capped.
-- at 730px and 390px, the check `hero sits in optical band` passes when the `h1` top is at least 240px and at most 270px;
-- the body background is `rgb(16, 17, 18)` in dark and `rgb(244, 244, 245)` in light.
+- the layout matches the 1024px breakpoint. At 1024px and above the header is 72px tall and the hero padding-top is 128px. Below 1024px the header is 64px tall and the hero padding-top is 64px;
+- the body background is `rgb(16, 17, 18)` in dark and `rgb(244, 244, 245)` in light;
+- the button is `rgb(233, 233, 235)` on `rgb(16, 17, 18)` in dark, and `rgb(23, 24, 26)` on `rgb(255, 255, 255)` in light;
+- content links use the primary text color and a 1px underline offset 4px. Nav links use the secondary text color and are not underlined;
+- the nav points at `#products` and `#contact`, GitHub points at `https://github.com/ryanphillipthomas`, and X points at `https://x.com/phazebludesign`;
+- the page shows the heading, the lead, `Focx`, `AI for learning.`, and `2026 Ryan Thomas`, and does not show `Placeholder`, `focx.ai`, or `handle to confirm`;
+- Focx is not linked to `https://focx.ai`;
+- under `prefers-reduced-motion: reduce`, hero animation is `none` and animation and transition durations are 0.
 
 Once per run it checks that the console, network, and HTTP responses had no errors.
 
-`--expect` and `--absent` assert visible copy at every width and scheme. Use them for the requirement under test, for example `--expect "Say Hello" --absent "projects will live"`. The default checks encode this page's current tokens and the 730px breakpoint. If a change intentionally alters those, update `scripts/drive.mjs` in the same PR and say so. Do not loosen a check to pass a candidate.
+`--expect` and `--absent` assert visible copy at every width and scheme. Use them for the requirement under test, for example `--expect "Say hello" --absent "Placeholder"`. The default checks encode this page's Graphite tokens and the 1024px breakpoint. If a change intentionally alters those, update `scripts/drive.mjs` in the same PR and say so. Do not loosen a check to pass a candidate.
 
 The script exits 1 on any failure and 0 when all pass.
 
@@ -60,7 +65,7 @@ Pick the directory before driving and keep it outside the repo:
 EVIDENCE_DIR=/tmp/verify-ryanthomas-ai/runs/$(date +%Y%m%d-%H%M%S)-$(git rev-parse --short HEAD)
 ```
 
-`drive.mjs` writes `report.json` (every check plus the measured values per width and scheme) and screenshots `dark-1280.png`, `dark-390.png`, `light-1280.png`, and `light-390.png`. Read the screenshots. A proof reports the revision, the checks that ran, the evidence path, and which feature files in `features/` were covered. A screenshot alone does not prove behavior; the `report.json` measurements do. Static files (manifest, sitemap, robots, assets) are checked with the commands in `features/metadata-and-assets.md`, not by the browser run.
+`drive.mjs` writes `report.json` (every check plus the measured values per width and scheme) and screenshots `dark-1280.png`, `light-1280.png`, `dark-390.png`, `light-390.png`, `dark-320.png`, and `light-320.png`. Read the screenshots. A proof reports the revision, the checks that ran, the evidence path, and which feature files in `features/` were covered. A screenshot alone does not prove behavior; the `report.json` measurements do. Static files (manifest, sitemap, robots, assets) are checked with the commands in `features/metadata-and-assets.md`, not by the browser run.
 
 ## Cleanup
 
