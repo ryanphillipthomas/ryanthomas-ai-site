@@ -43,8 +43,8 @@ Per width and scheme it checks that:
 - the button is `rgb(233, 233, 235)` on `rgb(16, 17, 18)` in dark, and `rgb(23, 24, 26)` on `rgb(255, 255, 255)` in light;
 - content links use the primary text color and a 1px underline offset 4px. Nav links use the secondary text color and are not underlined;
 - the nav points at `#products` and `#contact`, GitHub points at `https://github.com/ryanphillipthomas`, and X points at `https://x.com/phazebludesign`;
-- the page shows the heading, the lead, `Focx`, `AI for learning.`, and `2026 Ryan Thomas`, and does not show `Placeholder`, `focx.ai`, or `handle to confirm`;
-- Focx is not linked to `https://focx.ai`.
+- the only `h1` equals `Building useful software, one small thing at a time.`. The page shows `Focx`, `AI for learning.`, `focx.ai`, and `2026 Ryan Thomas`, and does not show `I'm Ryan Thomas`, `I’m Ryan Thomas`, `Placeholder`, or `handle to confirm`. A `.lead` element is not required, and a missing `.lead` does not fail the run;
+- `https://focx.ai` is linked. The footer home link href is `/`. No header brand mark is required.
 
 Once per run it checks that, under `prefers-reduced-motion: reduce`, the hero animation is `none` and animation and transition durations are 0, and that the console, network, and HTTP responses had no errors.
 

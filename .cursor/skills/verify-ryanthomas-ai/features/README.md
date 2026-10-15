@@ -26,7 +26,7 @@ This directory is the maintained source for verifying the user-facing behavior o
 
 ## Features
 
-- [Hero and contact](./hero-and-contact.md) covers the heading, lead, products, contact links, and the `Say hello` mailto button.
+- [Hero and contact](./hero-and-contact.md) covers the heading, products, contact links, and the `Say hello` mailto button.
 - [Responsive layout](./responsive-layout.md) covers the 1024px breakpoint, touch target, and overflow.
 - [Color schemes](./color-schemes.md) covers the dark default, the light override, the black-and-white button, and `theme-color`.
 - [Metadata and assets](./metadata-and-assets.md) covers head tags, icons, manifest, sitemap, and robots.

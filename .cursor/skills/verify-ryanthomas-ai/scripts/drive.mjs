@@ -70,7 +70,7 @@ const pageProbe = `(() => {
     innerWidth: innerWidth,
     scrollWidth: document.documentElement.scrollWidth,
     h1: q('h1').textContent.trim(),
-    lead: q('.lead').textContent.trim(),
+    lead: q('.lead') ? q('.lead').textContent.trim() : '',
     btnText: btn.textContent.trim(),
     btnHref: btn.getAttribute('href'),
     btnHeight: Math.round(r.height),
@@ -160,18 +160,22 @@ try {
     check(`${tag}: github target`, v.hrefs.includes('https://github.com/ryanphillipthomas'), '');
     check(`${tag}: x target`, v.hrefs.includes('https://x.com/phazebludesign'), '');
     check(`${tag}: visible copy`,
-      v.h1.includes('Ryan Thomas')
-        && v.lead === 'Building useful software, one small thing at a time.'
+      v.h1 === 'Building useful software, one small thing at a time.'
         && v.bodyText.includes('Focx')
         && v.bodyText.includes('AI for learning.')
+        && v.bodyText.includes('focx.ai')
         && v.bodyText.includes('2026 Ryan Thomas'),
       v.h1);
-    check(`${tag}: no placeholder copy`,
-      !v.bodyText.includes('Placeholder') && !v.bodyText.includes('focx.ai') && !v.bodyText.includes('handle to confirm'),
+    check(`${tag}: no retired name or placeholder copy`,
+      !v.bodyText.includes("I'm Ryan Thomas")
+        && !v.bodyText.includes('I’m Ryan Thomas')
+        && !v.bodyText.includes('Placeholder')
+        && !v.bodyText.includes('handle to confirm'),
       '');
-    check(`${tag}: focx is not linked`,
-      !v.hrefs.includes('https://focx.ai') && !v.hrefs.includes('https://www.focx.ai'),
+    check(`${tag}: focx is linked`,
+      v.hrefs.includes('https://focx.ai'),
       (v.hrefs || []).filter((h) => h && h.includes('focx')).join(', '));
+    check(`${tag}: footer home link`, v.hrefs.includes('/'), '');
     for (const t of expect) check(`${tag}: page contains "${t}"`, v.bodyText.includes(t), '');
     for (const t of absent) check(`${tag}: page does not contain "${t}"`, !v.bodyText.includes(t), '');
     if (width === 1280 || width === 390 || width === 320) {
